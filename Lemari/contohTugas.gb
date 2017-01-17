@@ -1,0 +1,147 @@
+'variabel untuk posisi kamera 
+Dim pcamx# = 0
+Dim pcamy# = 0
+Dim pcamz# = 2
+
+'variabel untuk posisi titik pandang 
+Dim prefx# = 0
+Dim prefy# = 0 
+Dim prefz# = 0
+
+'variabel perpindahan 
+Dim pindah# = 0.01  
+
+'variabel tekstur 
+Dim teksturdepan 
+Dim tekstursamping         
+Dim teksturbawah  
+
+teksturdepan = loadmipmaptexture("gambar/depan.jpg")
+tekstursamping = loadmipmaptexture("gambar/samping.jpg")
+teksturbawah = loadmipmaptexture("gambar/bawah.jpg")
+
+glEnable(GL_TEXTURE_2D) 
+while true
+glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
+glLoadIdentity()
+gluLookAt(pcamx#, pcamy#, pcamz#, prefx#, prefy#, prefz#, 0, 1, 0)  
+gltranslatef(0.0 , 0.0 , -2.0)
+'glBindTexture(GL_TEXTURE_2D, teksturkayu)    
+                   
+glBindTexture(GL_TEXTURE_2D, tekstursamping)
+glBegin (GL_QUADS) 
+'sisi belakang        
+'glColor3f(1.0, 0.0, 0.0)     
+glTexCoord2f(1,1)    
+glVertex3f(2.0, 2.0, -1.0) 'kanan atas        
+'glColor3f(0.0, 1.0, 0.0)    
+glTexCoord2f(1,0)
+glVertex3f(2.0, -2.0, -1.0) 'kanan bawah        
+'glColor3f(0.0, 0.0, 1.0)    
+glTexCoord2f(0,0)    
+glVertex3f(-2.0, -2.0, -1.0) 'kiri bawah         
+'glColor3f(1.0, 0.0, 1.0)    
+glTexCoord2f(0,1)    
+glVertex3f(-2.0, 2.0, -1.0) 'kiri atas 
+glEnd()    
+
+glBindTexture(GL_TEXTURE_2D, teksturdepan)
+glBegin (GL_QUADS)          
+
+'sisi depan        
+'glColor3f(1.0, 0.0, 0.0)     
+glTexCoord2f(1,1)    
+glVertex3f(2.0, 2.0, 1.0) 
+'kanan atas        
+'glColor3f(0.0, 1.0, 0.0)    
+glTexCoord2f(1,0)    
+glVertex3f(2.0, -2.0, 1.0) 
+'kanan bawah        
+'glColor3f(0.0, 0.0, 1.0)    
+glTexCoord2f(0,0)    
+glVertex3f(-2.0, -2.0, 1.0) 
+'kiri bawah         
+'glColor3f(1.0, 0.0, 1.0)    
+glTexCoord2f(0,1)    
+glVertex3f(-2.0, 2.0, 1.0) 
+'kiri atas 
+glEnd()                               
+glBindTexture(GL_TEXTURE_2D, tekstursamping)
+glBegin (GL_QUADS)  
+'sisi kiri        
+'glColor3f(1.0, 0.0, 0.0)     
+glTexCoord2f(0,1)    
+glVertex3f(-2.0, 2.0, -1.0)        
+'glColor3f(0.0, 1.0, 0.0)    
+glTexCoord2f(1,1)    
+glVertex3f(-2.0, 2.0, 1.0)        
+'glColor3f(0.0, 0.0, 1.0)    
+glTexCoord2f(1,0)    
+glVertex3f(-2.0, -2.0, 1.0)         
+'glColor3f(1.0, 0.0, 1.0)    
+glTexCoord2f(0,0)    
+glVertex3f(-2.0, -2.0, -1.0) 
+glEnd()     
+
+glBindTexture(GL_TEXTURE_2D, tekstursamping)
+glBegin (GL_QUADS) 
+'sisi kanan        
+'glColor3f(1.0, 0.0, 0.0)     
+glTexCoord2f(0,1)    
+glVertex3f(2.0, 2.0, -1.0)        
+'glColor3f(0.0, 1.0, 0.0)    
+glTexCoord2f(1,1)    
+glVertex3f(2.0, 2.0, 1.0)        
+'glColor3f(0.0, 0.0, 1.0)    
+glTexCoord2f(1,0)    
+glVertex3f(2.0, -2.0, 1.0)         
+'glColor3f(1.0, 0.0, 1.0)    
+glTexCoord2f(0,0)    
+glVertex3f(2.0, -2.0, -1.0) 
+glEnd() 
+
+glBindTexture(GL_TEXTURE_2D, tekstursamping)
+glBegin (GL_QUADS)   
+'sisi atas        
+'glColor3f(1.0, 0.0, 0.0)    
+glTexCoord2f(1,0)    
+glVertex3f(2.0, 2.0, -1.0)        
+'glColor3f(0.0, 1.0, 0.0)    
+glTexCoord2f(1,1)    
+glVertex3f(2.0, 2.0, 1.0)        
+'glColor3f(0.0, 0.0, 1.0)    
+glTexCoord2f(0,1)    
+glVertex3f(-2.0, 2.0, 1.0)         
+'glColor3f(1.0, 0.0, 1.0)    
+glTexCoord2f(0,0)    
+glVertex3f(-2.0, 2.0, -1.0) 
+glEnd() 
+
+glBindTexture(GL_TEXTURE_2D, teksturbawah)
+glBegin (GL_QUADS) 
+'sisi bawah        
+'glColor3f(1.0, 0.0, 0.0)     
+'glTexCoord2f(1,0)    
+'glVertex3f(2.0, -2.0, -1.0)        
+'glColor3f(0.0, 1.0, 0.0)    
+'glTexCoord2f(1,1)    
+'glVertex3f(2.0, -2.0, 1.0)        
+'glColor3f(0.0, 0.0, 1.0)  
+'glTexCoord2f(0,1)    
+'glVertex3f(-2.0, -2.0, 1.0)         
+'glColor3f(1.0, 0.0, 1.0)    
+'glTexCoord2f(0,0)    
+'glVertex3f(-2.0, -2.0, -1.0) 
+glEnd()  
+
+swapBuffers()
+if scankeydown(VK_RIGHT) then    ' gerak ke kanan
+pcamx# = pcamx# + pindah# 
+elseif scankeydown(VK_LEFT) then  ' gerak ke kiri 
+pcamx# = pcamx# - pindah#
+elseif scankeydown(VK_UP) then  ' gerak ke atas 
+prefy# = prefy# + pindah#
+elseif scankeydown(VK_DOWN) then  ' gerak ke bawah
+prefy# = prefy# - pindah# endif      
+
+wend                                  
